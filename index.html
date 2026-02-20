@@ -1868,6 +1868,16 @@
       // Init status
       setStatus('就绪 — 点击麦克风或按 Space 开始', 'idle');
 
+      // ── API Key 持久化（localStorage）────────────────────────────
+      // 读取已保存的 Key
+      const _elKeyEl = document.getElementById('elKey');
+      const _oaiKeyEl = document.getElementById('oaiKey');
+      if (localStorage.getItem('lt_el_key')) _elKeyEl.value = localStorage.getItem('lt_el_key');
+      if (localStorage.getItem('lt_oai_key')) _oaiKeyEl.value = localStorage.getItem('lt_oai_key');
+      // 每次输入时自动保存
+      _elKeyEl.addEventListener('input', () => localStorage.setItem('lt_el_key', _elKeyEl.value));
+      _oaiKeyEl.addEventListener('input', () => localStorage.setItem('lt_oai_key', _oaiKeyEl.value));
+
       // ── Photo OCR ────────────────────────────────────────────────
       const ocrFileInput = document.getElementById('ocrFileInput');
       const ocrDropArea = document.getElementById('ocrDropArea');
